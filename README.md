@@ -16,5 +16,5 @@ then simply run the project
 
 ## Changelog
 
-27/03/2018 - Added Google Maps API.
-28/03/2018 - Created Components to get the GeoJSON as props.
+* 27/03/2018 - Added Google Maps API.
+* 28/03/2018 - Created Components to get the GeoJSON as props.
