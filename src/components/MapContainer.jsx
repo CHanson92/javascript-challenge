@@ -35,7 +35,6 @@ class MapContainer extends Component {
 
   render() {
     const markers = this.props.markers;
-    console.log(this.props.markers.features[0]);
     return (
       <Map google={this.props.google}
           style={mapStyles}
@@ -46,6 +45,7 @@ class MapContainer extends Component {
           }}
           zoom={5}>
           {markers.features.map(item => (
+            console.log(item.geometry),
           <Marker 
             onClick={this.onMarkerClick}
             key={item.id}
