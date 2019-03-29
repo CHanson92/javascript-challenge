@@ -1,55 +1,66 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable react/no-string-refs */
 import React, { Component } from 'react';
-import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import {
+ Map, GoogleApiWrapper, InfoWindow, Marker
+} from 'google-maps-react';
 
 const mapStyles = {
   width: '75%',
-  height: '75%',
+  height: '75%'
 };
 
-export class MapContainer extends Component {
-  componentDidUpdate() {
-    const google = window.google;
-    this.map = new google.maps.Map(this.refs.map, {
-      center: this.props.center,
-      zoom: 4,
+class MapContainer extends Component {
+  state = {
+    showingInfoWindow: false,
+    activeMarker: {},
+    selectedPlace: {},
+  };
+
+  onMarkerClick = (props, marker, e) =>
+    this.setState({
+      selectedPlace: props,
+      activeMarker: marker,
+      showingInfoWindow: true
     });
 
-    this.createMarkers(this.props.markers);
-  }
-
-  createMarkers(users) {
-    const google = window.google;
-
-    users.map((user) => {
-      this.marker = new google.maps.Marker({
-        position: {
-          lat: user.location.latitude,
-          lng: user.location.longitude,
-        },
-        map: this.map,
-      });
-      this.state.markers.push(this.marker);
-    });
-  }
+  onMapClicked = (props) => {
+    if (this.state.showingInfoWindow) {
+      this.setState({
+        showingInfoWindow: false,
+        activeMarker: null
+      })
+    }
+  };
 
   render() {
+    const markers = this.props.markers;
+    console.log(this.props.markers.features[0]);
     return (
-        <Map
-          google={this.props.google}
-          zoom={5}
+      <Map google={this.props.google}
           style={mapStyles}
+          onClick={this.onMapClicked}
           initialCenter={{
-            lat: -28.0167,
-            lng: 153.4000,
-          }}>
-          <Marker
-            title="Marker"
-            name="Ship"
+            lat: -27.470125,
+            lng: 153.021072
+          }}
+          zoom={5}>
+          {markers.features.map(item => (
+          <Marker 
+            onClick={this.onMarkerClick}
+            key={item.id}
+            name={item.properties.material}
           />
-        <Map/>
-    );
+          ))}
+        <InfoWindow
+          marker={this.state.activeMarker}
+          visible={this.state.showingInfoWindow}>
+            <div>
+              <h1>{this.state.selectedPlace.name}</h1>
+            </div>
+        </InfoWindow>
+      </Map>
+    )
   }
 }
 

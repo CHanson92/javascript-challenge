@@ -18,3 +18,4 @@ then simply run the project
 
 * 27/03/2018 - Added Google Maps API.
 * 28/03/2018 - Created Components to get the GeoJSON as props.
+* 29/03/2018 - Got a single marker on the map, with data fed through as props.

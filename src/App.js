@@ -4,7 +4,7 @@ import MapContainer from './components/MapContainer';
 
 class App extends Component {
   componentDidMount() {
-    fetch('/data/boat_ramps.geojson')
+    fetch('/data/boat_ramps.geojson', { mode: 'no-cors' })
       .then(response => response.json()).then((data) => {
         this.setState({ markers: data });
       });
