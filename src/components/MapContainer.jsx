@@ -50,6 +50,9 @@ class MapContainer extends Component {
             onClick={this.onMarkerClick}
             key={item.id}
             name={item.properties.material}
+            // position={item.geometry.coordinates[0].map(coords => (
+            //   {lat: coords[0], lng: coords[1]}
+            // ))}
           />
           ))}
         <InfoWindow
