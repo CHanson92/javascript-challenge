@@ -1,72 +1,38 @@
-/* eslint-disable array-callback-return */
-/* eslint-disable react/no-string-refs */
 import React, { Component } from 'react';
-import {
- Map, GoogleApiWrapper, InfoWindow, Marker
-} from 'google-maps-react';
+import { Map, TileLayer, Marker, Popup, GeoJSON } from 'react-leaflet';
+import '../styles/app.scss';
 
-const mapStyles = {
-  width: '75%',
-  height: '75%'
-};
-
-class MapContainer extends Component {
+export default class MapContainer extends Component {
   state = {
-    showingInfoWindow: false,
-    activeMarker: {},
-    selectedPlace: {},
-  };
+    lat: -28.0167,
+    lng: 153.4000,
+    zoom: 5,
+  }
 
-  onMarkerClick = (props, marker, e) =>
-    this.setState({
-      selectedPlace: props,
-      activeMarker: marker,
-      showingInfoWindow: true
-    });
-
-  onMapClicked = (props) => {
-    if (this.state.showingInfoWindow) {
-      this.setState({
-        showingInfoWindow: false,
-        activeMarker: null
-      })
-    }
-  };
+  componentDidMount() {
+    fetch('/data/boat_ramps.geojson')
+      .then(response => response.json()).then((data) => {
+        this.setState({ markers: data });
+      });
+  }
 
   render() {
-    const markers = this.props.markers;
+    const position = [this.state.lat, this.state.lng]
+    const data = this.props.markers;
+    console.log(data)
     return (
-      <Map google={this.props.google}
-          style={mapStyles}
-          onClick={this.onMapClicked}
-          initialCenter={{
-            lat: -27.470125,
-            lng: 153.021072
-          }}
-          zoom={5}>
-          {markers.features.map(item => (
-            console.log(item.geometry),
-          <Marker 
-            onClick={this.onMarkerClick}
-            key={item.id}
-            name={item.properties.material}
-            // position={item.geometry.coordinates[0].map(coords => (
-            //   {lat: coords[0], lng: coords[1]}
-            // ))}
-          />
-          ))}
-        <InfoWindow
-          marker={this.state.activeMarker}
-          visible={this.state.showingInfoWindow}>
-            <div>
-              <h1>{this.state.selectedPlace.name}</h1>
-            </div>
-        </InfoWindow>
+      <Map center={position} zoom={this.state.zoom}>
+        <TileLayer
+          attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        <GeoJSON key={`geojson-01`} addData={data} />
+        <Marker key={`marker-01`} position={position}>
+          <Popup>
+            A pretty CSS3 popup. <br /> Easily customizable.
+          </Popup>
+        </Marker>
       </Map>
     )
   }
 }
-
-export default GoogleApiWrapper({
-  apiKey: 'AIzaSyDiW3Irb8VAVLPUNYB1wf31D8a1CfLFJLE',
-})(MapContainer);
