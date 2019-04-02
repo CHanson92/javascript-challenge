@@ -1,0 +1,11 @@
+@mixin grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: auto;
+    justify-self: center;
+    align-items: center;
+}
+
+@mixin centered {
+    justify-self: center;
+}

@@ -13,14 +13,20 @@ export default class MapContainer extends Component {
   }
 
   onEachFeature(feature, layer) {
-    console.log(feature);
-    layer.bindPopup(feature.properties.material);
+    layer.bindPopup(
+      "Material: " + feature.properties.material + 
+      "</br>" + 
+      "Area: " + feature.properties.area_
+    );
   }
 
   render() {
     const position = [this.state.lat, this.state.lng]
     return (
-      <Map center={position} zoom={this.state.zoom}>
+      <Map 
+        center={position} 
+        zoom={this.state.zoom}
+      >
         <TileLayer
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -31,7 +37,7 @@ export default class MapContainer extends Component {
           data={this.state.geoJsonData}
           style={() => ({
             color: 'red',
-            weight: 10,
+            weight: 7,
           })}
           onEachFeature={this.onEachFeature.bind(this)}
         />

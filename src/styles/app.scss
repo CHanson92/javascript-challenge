@@ -1,7 +1,12 @@
 @import 'grid';
 @import 'mixins';
 
+.App-header {
+    @include centered;
+}
+
 .leaflet-container { 
+    @include centered;
     height: 60em; 
-    width: 75%;
+    width: 90%;
 }
