@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Map, TileLayer, Marker, Popup, GeoJSON } from 'react-leaflet';
+import { Map, TileLayer, GeoJSON } from 'react-leaflet';
 import '../styles/app.scss';
-import geoJson from '../data/boat_ramps.geojson';
+import geoJson from '../data/boat_ramps.js';
 
 
 export default class MapContainer extends Component {
@@ -9,6 +9,7 @@ export default class MapContainer extends Component {
     lat: -28.0167,
     lng: 153.4000,
     zoom: 5,
+    geoJsonData: geoJson,
   }
 
   render() {
@@ -20,14 +21,9 @@ export default class MapContainer extends Component {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <GeoJSON 
-          key={`geojson-01`} 
-          data={geoJson}
+          key={`geojson-01`}
+          data={this.state.geoJsonData}
         />
-        <Marker key={`marker-01`} position={position}>
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
-        </Marker>
       </Map>
     )
   }

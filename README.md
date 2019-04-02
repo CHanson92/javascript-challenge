@@ -21,3 +21,4 @@ then simply run the project
 * 29/03/2018 - Got a single marker on the map, with data fed through as props.
 * 31/03/2018 - Changed from Google Maps API to React Leaflet and moved ComponentDidMount from App to MapContainer.
 * 01/03/2018 - Removed ComponentDidMount and directly imported the GeoJSON.
+* 02/03/2018 - Got the GeoJSON to show on the Map.
