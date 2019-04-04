@@ -1,12 +1,26 @@
 @import 'grid';
 @import 'mixins';
 
-.App-header {
-    @include centered;
-}
-
-.leaflet-container { 
-    @include centered;
-    height: 60em; 
-    width: 90%;
+html {
+    background: #c0c0c0;
+    font-family: 'Roboto';
+    .App {
+        .App-header {
+            @include centered;
+            color: gold;
+        }
+        
+        .leaflet-container { 
+            @include centered;
+            height: 60em; 
+            width: 90%;
+            border: 3px solid gold;
+        }
+        footer {
+            @include centered;
+            margin: 1em;
+            font-weight: bold;
+            color: gold;
+        }
+    }
 }
