@@ -9,3 +9,11 @@
 @mixin centered {
     justify-self: center;
 }
+
+@mixin textshadow {
+    text-shadow: 1px 1px 1px black;
+}
+
+@mixin gold {
+    color: #DAA520;
+}

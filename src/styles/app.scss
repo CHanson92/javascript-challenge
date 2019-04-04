@@ -7,20 +7,25 @@ html {
     .App {
         .App-header {
             @include centered;
-            color: gold;
+            @include textshadow;
+            @include gold;
+            font-size: 1.5em;
         }
         
         .leaflet-container { 
             @include centered;
             height: 60em; 
             width: 90%;
-            border: 3px solid gold;
+            border: 3px solid #DAA520;
+            outline: 1px solid black;
         }
         footer {
             @include centered;
+            @include textshadow;
+            @include gold;
             margin: 1em;
             font-weight: bold;
-            color: gold;
+            font-size: 2em;
         }
     }
 }

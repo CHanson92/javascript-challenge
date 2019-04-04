@@ -4,11 +4,10 @@ import React, { Component } from 'react';
 import { Map, TileLayer, GeoJSON } from 'react-leaflet';
 import { connect } from 'react-redux';
 import '../styles/app.scss';
-import geoJson from '../data/boat_ramps';
 
-const mapStateToProps = (state) => {
-  console.log(state);
-};
+const mapStateToProps = state => ({
+  geoJson: state,
+});
 
 class MapContainer extends Component {
   constructor(props) {
@@ -17,7 +16,6 @@ class MapContainer extends Component {
       lat: -28.0167,
       lng: 153.4000,
       zoom: 10,
-      geoJsonData: geoJson,
     };
   }
 
@@ -32,12 +30,12 @@ class MapContainer extends Component {
   }
 
   render() {
-    const props = this.state;
-    const position = [props.lat, props.lng];
+    const data = this.props;
+    const position = [this.state.lat, this.state.lng];
     return (
       <Map
         center={position}
-        zoom={props.zoom}
+        zoom={this.state.zoom}
       >
         <TileLayer
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -45,11 +43,11 @@ class MapContainer extends Component {
         />
         <GeoJSON
           key="geojson-01"
-          data={props.geoJsonData}
           style={() => ({
-            color: 'red',
+            color: '#DAA520',
             weight: 7,
           })}
+          data={data.geoJson}
           onEachFeature={this.onEachFeature}
         />
       </Map>
