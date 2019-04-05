@@ -1,12 +1,20 @@
-/* eslint-disable class-methods-use-this */
+/* eslint-disable yoda */
 /* eslint-disable no-underscore-dangle */
+/* eslint-disable class-methods-use-this */
 import React, { Component } from 'react';
 import { Map, TileLayer, GeoJSON } from 'react-leaflet';
 import { connect } from 'react-redux';
 import '../styles/app.scss';
+import { area50, area200, area526 } from '../redux/modules/areaReducer';
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   geoJson: state,
+});
+
+const mapDispatchToProps = dispatch => ({
+  AREA_50: item => dispatch(area50(item)),
+  AREA_200: item => dispatch(area200(item)),
+  AREA_526: item => dispatch(area526(item)),
 });
 
 class MapContainer extends Component {
@@ -55,4 +63,4 @@ class MapContainer extends Component {
   }
 }
 
-export default connect(mapStateToProps)(MapContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(MapContainer);

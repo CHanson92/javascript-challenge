@@ -15,5 +15,15 @@
 }
 
 @mixin gold {
-    color: #DAA520;
+    color: #FFD700;
+}
+
+@mixin flexflow {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+}
+
+@mixin border {
+    border: 3px solid #DAA520;
 }

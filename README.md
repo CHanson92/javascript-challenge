@@ -24,3 +24,4 @@ then simply run the project
 * 02/03/2018 - Got the GeoJSON to show on the Map.
 * 02/03/2018 - Added a OnEachFeature Popup that shows the Material and Area.
 * 04/03/2018 - Added Redux, Redux Starter Kit & React-Redux and imported geoJSON as preloaded state.
+* 05/03/2018 - Created new components for analysis of boat ramps per material & area.

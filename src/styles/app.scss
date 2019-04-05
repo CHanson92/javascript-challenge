@@ -14,10 +14,31 @@ html {
         
         .leaflet-container { 
             @include centered;
+            @include border;
             height: 60em; 
             width: 90%;
-            border: 3px solid #DAA520;
-            outline: 1px solid black;
+        }
+        .AATitle {
+            @include centered;
+            @include gold;
+            @include textshadow;
+            font-size: 1.5em;
+        }
+        .victoryContainer {
+            @include flexflow;
+            @include border;
+            border-right: none;
+        }
+        .RATitle {
+            @include centered;
+            @include gold;
+            @include textshadow;
+            font-size: 1.5em;
+        }
+        .rampContainer {
+            @include flexflow;
+            @include border;
+            border-left: none;
         }
         footer {
             @include centered;
@@ -25,7 +46,7 @@ html {
             @include gold;
             margin: 1em;
             font-weight: bold;
-            font-size: 2em;
+            font-size: 1em;
         }
     }
 }

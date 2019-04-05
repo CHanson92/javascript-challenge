@@ -10,8 +10,24 @@
         grid-column: 1/3;
         grid-row: 2;
     }
+    .AATitle {
+        grid-column: 1;
+        grid-row: 3;
+    }
+    .victoryContainer {
+        grid-column: 1;
+        grid-row: 4;
+    }
+    .RATitle {
+        grid-column: 2;
+        grid-row: 3;
+    }
+    .rampContainer {
+        grid-column: 2;
+        grid-row: 4;
+    }
     footer {
         grid-column: 1/3;
-        grid-row: 3;
+        grid-row: 5;
     }
 }
